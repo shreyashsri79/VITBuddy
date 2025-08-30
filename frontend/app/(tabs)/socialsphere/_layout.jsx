@@ -18,16 +18,18 @@ export default function Layout() {
             iconName = focused ? "megaphone" : "megaphone-outline";
           } else if (route.name === "lostnfound") {
             iconName = focused ? "help-buoy" : "help-buoy-outline";
+          } else if (route.name === "delibuddy") {
+            iconName = focused ? "archive" : "archive-outline"; 
+            // alternatives: "cube-outline", "car-outline", "fast-food-outline"
           }
           return <Ionicons name={iconName} size={24} color={color} />;
         },
       })}
     >
-			
-			<TopTabs.Screen name="latestAnnouncements" />
+      <TopTabs.Screen name="latestAnnouncements" />
       <TopTabs.Screen name="marketplace" />
-			<TopTabs.Screen name="lostnfound" />
-			
+      <TopTabs.Screen name="lostnfound" />
+      <TopTabs.Screen name="delibuddy" />   {/* <-- Added DeliBuddy */}
     </TopTabs>
   );
 }

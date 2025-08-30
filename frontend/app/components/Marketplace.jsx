@@ -69,6 +69,7 @@ export default function MarketplacePager() {
     <Pressable onPress={() => router.push('/screens/marketplace')}>
       <View style={{ flex: 1, marginVertical: 24 }}>
         <Text style={styles.sectionTitle}>Marketplace</Text>
+
         <View style={styles.wrapper}>
           <FlatList
             ref={flatListRef}
@@ -121,6 +122,13 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     borderColor: '#ddd',
+  },
+  divider: {
+    borderBottomWidth: 1,
+    borderColor: '#bbb',
+    borderStyle: 'dashed',   // clean dashed line
+    marginBottom: 16,
+    marginHorizontal: 26,    // aligns with title
   },
   image: {
     width: '100%',

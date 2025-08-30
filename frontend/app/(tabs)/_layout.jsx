@@ -109,9 +109,15 @@ function TabsLayout() {
       <Tabs.Screen name="home" options={{ headerTitle: () => {
         return <Text style={{ fontFamily: 'Vibur_400Regular', fontSize: 32, marginStart: 32 }}>VITBuddy</Text>;
       }}} />
-      <Tabs.Screen name="socialsphere" options={{ title: 'Social Sphere' }} />
-      <Tabs.Screen name="hostelnmess" options={{ title: 'Hostel & Mess' }} />
-      <Tabs.Screen name="academia" options={{ title: 'Academia' }} />
+      <Tabs.Screen name="socialsphere" options={{ headerTitle: () => {
+        return <Text style={{ fontFamily: 'Vibur_400Regular', fontSize: 32, marginStart: 32 }}>Social Sphere</Text>;
+      }  }} />
+      <Tabs.Screen name="hostelnmess" options={{ headerTitle: () => {
+        return <Text style={{ fontFamily: 'Vibur_400Regular', fontSize: 32, marginStart: 32 }}>Hostel & Mess</Text>;
+      } }} />
+      <Tabs.Screen name="academia" options={{ headerTitle: () => {
+        return <Text style={{ fontFamily: 'Vibur_400Regular', fontSize: 32, marginStart: 32 }}>Academia</Text>;
+      } }} />
     </Tabs>
   );
 }

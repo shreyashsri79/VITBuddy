@@ -123,7 +123,10 @@ export default function MarketplaceScreen() {
             contentContainerStyle={{ paddingBottom: 100 }}
             showsVerticalScrollIndicator={false}
             ListHeaderComponent={() => (
+              <>
               <Text style={styles.marketplaceHeading}>Marketplace</Text>
+              <View style={styles.divider} />
+              </>
             )}
           />
 
@@ -203,7 +206,7 @@ const styles = StyleSheet.create({
     fontSize: 36,
     fontFamily: 'Tinos_700Bold',
     color: '#111',
-    marginBottom: 32,
+    marginBottom: 16,
   },
 
   card: {
@@ -279,6 +282,12 @@ const styles = StyleSheet.create({
     padding: 14,
     borderRadius: 10,
     alignItems: 'center',
+  },
+  divider: {
+    borderBottomWidth: 1,
+    borderColor: '#ccc',
+    borderStyle: 'dotted',
+    marginBottom: 16,
   },
   submitText: { color: '#fff', fontFamily: 'Inter_700Bold', fontSize: 16 },
 });

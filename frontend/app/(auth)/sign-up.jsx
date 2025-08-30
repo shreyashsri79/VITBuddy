@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Text, TextInput, TouchableOpacity, View, StyleSheet } from 'react-native'
+import { Text, TextInput, TouchableOpacity, View, StyleSheet, Image } from 'react-native'
 import { useSignUp } from '@clerk/clerk-expo'
 import { Link, useRouter } from 'expo-router'
 
@@ -41,6 +41,7 @@ export default function SignUpScreen() {
   if (pendingVerification) {
     return (
       <View style={styles.container}>
+        <Image source={require('../../assets/images/logo.png')} style={styles.logo} />
         <Text style={styles.title}>Verify your email</Text>
         <TextInput
           style={styles.input}
@@ -58,6 +59,7 @@ export default function SignUpScreen() {
 
   return (
     <View style={styles.container}>
+      <Image source={require('../../assets/images/logo.png')} style={styles.logo} />
       <Text style={styles.title}>Sign up</Text>
       <TextInput
         style={styles.input}
@@ -92,10 +94,17 @@ export default function SignUpScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+
     alignItems: 'center',
     backgroundColor: '#fff',
     padding: 24,
+  },
+  logo: {
+    width: 300,
+    height: 300,
+    resizeMode: 'contain',
+    marginBottom: 24,
+    marginTop: 48, // gives breathing room from notch
   },
   title: {
     fontSize: 28,

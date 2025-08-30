@@ -1,7 +1,7 @@
+import React from 'react'
 import { useSignIn } from '@clerk/clerk-expo'
 import { Link, useRouter } from 'expo-router'
-import { Text, TextInput, TouchableOpacity, View, StyleSheet } from 'react-native'
-import React from 'react'
+import { Text, TextInput, TouchableOpacity, View, StyleSheet, Image } from 'react-native'
 
 export default function Page() {
   const { signIn, setActive, isLoaded } = useSignIn()
@@ -30,6 +30,9 @@ export default function Page() {
 
   return (
     <View style={styles.container}>
+      {/* Logo at the top */}
+      <Image source={require('../../assets/images/logo.png')} style={styles.logo} />
+
       <Text style={styles.title}>Sign in</Text>
       <TextInput
         style={styles.input}
@@ -64,10 +67,16 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
     padding: 24,
+  },
+  logo: {
+    width: 300,
+    height: 300,
+    resizeMode: 'contain',
+    marginBottom: 24,
+    marginTop: 48, // gives breathing room from notch
   },
   title: {
     fontSize: 28,
@@ -85,7 +94,7 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   button: {
-    backgroundColor: '#000', // black button
+    backgroundColor: '#000',
     paddingVertical: 14,
     borderRadius: 12,
     width: '100%',
@@ -95,7 +104,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#fff', // white text
+    color: '#fff',
   },
   footer: {
     flexDirection: 'row',
@@ -108,6 +117,6 @@ const styles = StyleSheet.create({
   link: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#000', // black link
+    color: '#000',
   },
 })
