@@ -1,3 +1,4 @@
+// Imports
 import React, { useState, useRef, useMemo } from 'react';
 import {
   View,
@@ -24,6 +25,7 @@ import {
   Inter_600SemiBold,
   Inter_700Bold,
 } from '@expo-google-fonts/inter';
+import { Tinos_700Bold } from '@expo-google-fonts/tinos';
 
 const initialData = [
   {
@@ -48,6 +50,7 @@ export default function MarketplaceScreen() {
     Inter_500Medium,
     Inter_600SemiBold,
     Inter_700Bold,
+    Tinos_700Bold,
   });
 
   const [data, setData] = useState(initialData);
@@ -112,13 +115,16 @@ export default function MarketplaceScreen() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
-          {/* List */}
+          {/* List with header */}
           <FlatList
             data={data}
             renderItem={renderItem}
             keyExtractor={(item) => item.id}
             contentContainerStyle={{ paddingBottom: 100 }}
             showsVerticalScrollIndicator={false}
+            ListHeaderComponent={() => (
+              <Text style={styles.marketplaceHeading}>Marketplace</Text>
+            )}
           />
 
           {/* Floating Add Button */}
@@ -142,7 +148,10 @@ export default function MarketplaceScreen() {
 
                 {pickedImage && (
                   <View style={{ marginBottom: 14 }}>
-                    <Image source={{ uri: pickedImage }} style={styles.previewImage} />
+                    <Image
+                      source={{ uri: pickedImage }}
+                      style={styles.previewImage}
+                    />
                     <Pressable
                       onPress={() => setPickedImage(null)}
                       style={styles.removeImageButton}
@@ -190,14 +199,18 @@ const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: '#f9f9f9' },
   container: { flex: 1, padding: 16 },
 
+  marketplaceHeading: {
+    fontSize: 36,
+    fontFamily: 'Tinos_700Bold',
+    color: '#111',
+    marginBottom: 32,
+  },
+
   card: {
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 12,
+    borderBottomWidth: 1,
+    borderColor: '#555',
     marginBottom: 20,
     backgroundColor: '#fff',
-    overflow: 'hidden',
-    elevation: 3,
   },
   image: { width: '100%', height: 220 },
   details: { padding: 12 },
@@ -232,10 +245,7 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
 
-  sheetContent: {
-    flex: 1,
-    padding: 20,
-  },
+  sheetContent: { flex: 1, padding: 20 },
   modalHeading: { fontSize: 18, fontFamily: 'Inter_700Bold', marginBottom: 14 },
   input: {
     borderWidth: 1,

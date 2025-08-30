@@ -24,6 +24,7 @@ import {
   Inter_600SemiBold,
   Inter_700Bold,
 } from '@expo-google-fonts/inter';
+import { Tinos_700Bold } from '@expo-google-fonts/tinos';
 
 const initialData = [
   {
@@ -50,6 +51,7 @@ export default function LostFoundScreen() {
     Inter_500Medium,
     Inter_600SemiBold,
     Inter_700Bold,
+    Tinos_700Bold,
   });
 
   const [filter, setFilter] = useState('All');
@@ -125,30 +127,37 @@ export default function LostFoundScreen() {
     </View>
   );
 
+  // Header with "Lost & Found" + Pills
+  const ListHeader = () => (
+    <View>
+      <Text style={styles.heading}>Lost & Found</Text>
+      <View style={styles.pillsContainer}>
+        {['All', 'Lost', 'Found'].map((p) => (
+          <Pressable
+            key={p}
+            onPress={() => setFilter(p)}
+            style={[styles.pill, filter === p && styles.pillActive]}
+          >
+            <Text style={[styles.pillText, filter === p && styles.pillTextActive]}>
+              {p}
+            </Text>
+          </Pressable>
+        ))}
+      </View>
+      <View style={styles.divider} />
+    </View>
+  );
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
-          {/* Pills */}
-          <View style={styles.pillsContainer}>
-            {['All', 'Lost', 'Found'].map((p) => (
-              <Pressable
-                key={p}
-                onPress={() => setFilter(p)}
-                style={[styles.pill, filter === p && styles.pillActive]}
-              >
-                <Text style={[styles.pillText, filter === p && styles.pillTextActive]}>
-                  {p}
-                </Text>
-              </Pressable>
-            ))}
-          </View>
-
           {/* List */}
           <FlatList
             data={filteredData}
             renderItem={renderItem}
             keyExtractor={(item) => item.id}
+            ListHeaderComponent={ListHeader}
             contentContainerStyle={{ paddingBottom: 100 }}
             showsVerticalScrollIndicator={false}
           />
@@ -231,6 +240,13 @@ export default function LostFoundScreen() {
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: '#f9f9f9' },
   container: { flex: 1, padding: 16 },
+
+  heading: {
+    fontSize: 36,
+    fontFamily: 'Tinos_700Bold',
+    marginBottom: 16,
+    color: '#111',
+  },
 
   pillsContainer: {
     flexDirection: 'row',
@@ -317,6 +333,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'Inter_500Medium',
     color: '#555',
+  },
+  divider: {
+    borderBottomWidth: 1,
+    borderColor: '#ccc',
+    borderStyle: 'dotted',
+    marginBottom: 16,
   },
   previewImage: { width: '100%', height: 250, borderRadius: 10 },
   removeImageButton: {

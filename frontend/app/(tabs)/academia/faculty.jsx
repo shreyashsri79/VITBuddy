@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import Animated, { Layout, SlideInLeft } from 'react-native-reanimated'
-import facultyData from '../../assets/jsons/faculty_details.json'
+import facultyData from '../../../assets/jsons/faculty_details.json'
 
 export default function FacultyScreen() {
   const [search, setSearch] = useState('')

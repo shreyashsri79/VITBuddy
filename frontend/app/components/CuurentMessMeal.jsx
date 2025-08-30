@@ -68,7 +68,7 @@ const CurrentMenu = () => {
   const content = messData?.messMenus?.[messName]?.days?.[today]?.[meal];
 
   return (
-    <Pressable onPress={() => router.push('/screens/mess')}>
+    <Pressable onPress={() => router.push('/(tabs)/hostelnmess/mess')}>
       <View style={styles.container}>
         <Text style={styles.messLabel}>
           Mess: {messName.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}

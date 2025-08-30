@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, SafeAreaView } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import * as FileSystem from 'expo-file-system';
-import messData from '../../assets/jsons/mess.json';
+import messData from '../../../assets/jsons/mess.json';
 
 const userFile = FileSystem.documentDirectory + 'user.json';
 

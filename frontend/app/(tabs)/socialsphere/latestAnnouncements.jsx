@@ -10,6 +10,8 @@ import {
   Pressable,
 } from 'react-native';
 import { Link } from 'expo-router';
+import { useFonts, Tinos_700Bold } from '@expo-google-fonts/tinos';
+import AppLoading from 'expo-app-loading';
 
 const { width: screenWidth } = Dimensions.get('window');
 const CARD_WIDTH = screenWidth * 0.9;
@@ -23,7 +25,7 @@ const announcements = [
     id: '1',
     title: 'Hackathon 2025',
     category: 'Tech',
-    image: require('../../assets/images/sample_poster.png'),
+    image: require('../../../assets/images/sample_poster.png'),
   },
   {
     id: '2',
@@ -48,7 +50,15 @@ const announcements = [
 export default function LatestAnnouncementsScreen() {
   const [selectedFilter, setSelectedFilter] = useState('All');
 
-  // Filter logic
+  // Load Google font Tinos Bold 700
+  const [fontsLoaded] = useFonts({
+    Tinos_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   const filteredData =
     selectedFilter === 'All'
       ? announcements
@@ -66,7 +76,6 @@ export default function LatestAnnouncementsScreen() {
         <View style={styles.card}>
           <Image source={item.image} style={styles.image} />
         </View>
-        {/* Beneath image */}
         <View style={styles.textBlock}>
           <Text style={styles.cardTitle}>{item.title}</Text>
           <Text style={styles.cardCategory}>{item.category}</Text>
@@ -75,57 +84,65 @@ export default function LatestAnnouncementsScreen() {
     </Link>
   );
 
-  return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
+  // Header component for FlatList
+  const ListHeader = () => (
+    <View>
+      <Text style={styles.whatsNewText}>Upcoming Events </Text>
 
-        {/* Pills Row (wrapped like bricks) */}
-        <View style={styles.pillsContainer}>
-          {filters.map((filter) => (
-            <Pressable
-              key={filter}
-              onPress={() => setSelectedFilter(filter)}
+      {/* Pills Row */}
+      <View style={styles.pillsContainer}>
+        {filters.map((filter) => (
+          <Pressable
+            key={filter}
+            onPress={() => setSelectedFilter(filter)}
+            style={[
+              styles.pill,
+              selectedFilter === filter && styles.pillActive,
+            ]}
+          >
+            <Text
               style={[
-                styles.pill,
-                selectedFilter === filter && styles.pillActive,
+                styles.pillText,
+                selectedFilter === filter && styles.pillTextActive,
               ]}
             >
-              <Text
-                style={[
-                  styles.pillText,
-                  selectedFilter === filter && styles.pillTextActive,
-                ]}
-              >
-                {filter}
-              </Text>
-            </Pressable>
-          ))}
-        </View>
-
-        {/* Divider */}
-        <View style={styles.divider} />
-
-        {/* Announcements list */}
-        <FlatList
-          data={filteredData}
-          renderItem={renderCard}
-          keyExtractor={(item) => item.id}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 20 }}
-        />
+              {filter}
+            </Text>
+          </Pressable>
+        ))}
       </View>
+
+      <View style={styles.divider} />
+    </View>
+  );
+
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <FlatList
+        data={filteredData}
+        renderItem={renderCard}
+        keyExtractor={(item) => item.id}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ padding: 16, paddingBottom: 20 }}
+        ListHeaderComponent={ListHeader}
+      />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: '#f9f9f9' },
-  container: { flex: 1, padding: 16 },
+
+  whatsNewText: {
+    fontFamily: 'Tinos_700Bold', // Bold 700 weight
+    fontSize: 36,
+    marginBottom: 16,
+    color: '#111',
+  },
 
   pillsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-
   },
   pill: {
     borderWidth: 1,
@@ -157,7 +174,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
 
-  // Full Zara card
   cardWrapper: {
     marginBottom: 52,
     paddingBottom: 12,
