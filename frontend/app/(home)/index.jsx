@@ -1,4 +1,5 @@
 import { useUser } from '@clerk/clerk-expo'
+import { Stack } from 'expo-router/stack'
 import { Redirect } from 'expo-router'
 import { View, ActivityIndicator } from 'react-native'
 import React, { useEffect, useState } from 'react'
