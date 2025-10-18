@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, SafeAreaView } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import * as FileSystem from 'expo-file-system';
-import messData from '../../../assets/jsons/mess.json';
+import messData from '../../assets/jsons/mess.json';
 
 const userFile = FileSystem.documentDirectory + 'user.json';
 
-const MessScreen = () => {
+const HostelNMessScreen = () => {
   const [open, setOpen] = useState(false);
   const [selectedMess, setSelectedMess] = useState(null);
 
@@ -165,4 +165,4 @@ const styles = StyleSheet.create({
   meal: { fontSize: 14, color: '#555', lineHeight: 20 },
 });
 
-export default MessScreen;
+export default HostelNMessScreen;
