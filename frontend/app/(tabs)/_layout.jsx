@@ -100,8 +100,8 @@ function TabsLayout() {
           let iconName;
           if (route.name === 'home') iconName = focused ? 'home' : 'home-outline';
           if (route.name === 'academia') iconName = focused ? 'school' : 'school-outline';
-          if (route.name === 'hostelnmess') iconName = focused ? 'business' : 'business-outline';
-          if (route.name === 'socialsphere') iconName = focused ? 'globe' : 'globe-outline';
+          if (route.name === 'hostelnmess') iconName = focused ? 'restaurant' : 'restaurant-outline';
+          if (route.name === 'socialsphere') iconName = focused ? 'people' : 'people-outline';
           return <Ionicons name={iconName} size={size} color={color} />;
         },
       })}
